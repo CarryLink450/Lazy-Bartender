@@ -211,11 +211,11 @@ function Hero() {
   );
 }
 
-function SectionIntro({ eyebrow, title, copy }) {
+function SectionIntro({ eyebrow, title, copy, titleClassName = 'section-title' }) {
   return (
     <motion.div {...fadeUp} className="mx-auto mb-12 max-w-3xl text-center">
       <p className="section-eyebrow">{eyebrow}</p>
-      <h2 className="section-title">{title}</h2>
+      <h2 className={titleClassName}>{title}</h2>
       {copy && <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">{copy}</p>}
     </motion.div>
   );
@@ -361,6 +361,7 @@ function FeaturedCocktails() {
       <SectionIntro
         eyebrow="Cocktail Menu"
         title="From zesty and bright to warm and spiced, and everything in between. A bottle for every taste"
+        titleClassName="mx-auto mt-4 max-w-2xl text-lg leading-8 text-slate-700"
       />
       <div className="mx-auto grid max-w-7xl gap-4 px-5 sm:grid-cols-2 lg:grid-cols-4 lg:px-8">
         {cocktails.map((item) => (
