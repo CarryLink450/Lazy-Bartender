@@ -15,7 +15,6 @@ export const brand = {
 export const navLinks = [
   ['Home', 'home'],
   ['Cocktails', 'cocktails'],
-  ['Services', 'services'],
   ['About', 'about'],
   ['Contact', 'contact'],
 ];
@@ -101,14 +100,4 @@ export const cocktails = [
     image: '/cocktails/signature.svg',
     accent: 'from-berry to-purple',
   },
-];
-
-export const services = [
-  ['Online cocktail orders', 'Choose from the menu and place your order directly through WhatsApp.'],
-  ['Ready-to-drink cocktails', 'Freshly prepared alcoholic cocktails packaged for pickup or delivery.'],
-  ['Custom flavor requests', 'Adjust sweetness, fruit notes, garnish, and alcohol preference when available.'],
-  ['Bottle and batch options', 'Order individual cocktails or larger ready-made quantities for your own plans.'],
-  ['Fresh garnish and ingredients', 'Citrus, mint, fruit, syrups, and ice-forward recipes prepared with care.'],
-  ['Fast WhatsApp confirmation', 'Ask for availability, prices, quantities, and delivery details before ordering.'],
-  ['Lebanon pickup or delivery', 'Easy online ordering with service details confirmed based on your location.'],
 ];

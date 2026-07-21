@@ -1,20 +1,17 @@
 import {
-  Check,
   ChevronRight,
-  Citrus,
   GlassWater,
   MapPin,
   Menu,
   MessageCircle,
   Phone,
-  Send,
   ShieldCheck,
   Sparkles,
   X,
 } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useMemo, useState } from 'react';
-import { brand, cocktails, navLinks, services } from './data/brand';
+import { brand, cocktails, navLinks } from './data/brand';
 
 const fadeUp = {
   initial: { opacity: 0, y: 26 },
@@ -170,8 +167,6 @@ function Header() {
 }
 
 function Hero() {
-  const badges = ['Fresh Ingredients', 'Online Orders', 'Ready-to-Drink Cocktails', 'Lebanon Pickup / Delivery'];
-
   return (
     <section id="home" className="hero-shell relative min-h-screen overflow-hidden pt-28">
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 pb-20 pt-10 lg:grid-cols-[1fr_0.94fr] lg:px-8 lg:pt-24">
@@ -180,26 +175,16 @@ function Hero() {
             <Sparkles size={16} className="text-gold" /> Premium alcoholic cocktails ordered online in Lebanon
           </div>
           <h1 className="max-w-4xl font-display text-5xl font-extrabold leading-[0.95] text-night sm:text-6xl lg:text-7xl">
-            Fresh Cocktails. Premium Vibes. Ordered Online.
+            Lazy Bartender crafted Cocktails.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-700">
-            Ready-to-drink alcoholic cocktails made fresh to order, with colorful flavors, premium presentation, and easy
-            WhatsApp ordering across Lebanon.
+            Fresh ready to drink cocktails made for people who love good drinks but hate the work. Choose your bottle, we
+            will handle the rest.
           </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <a className="btn-primary justify-center" href={whatsappUrl()} target="_blank" rel="noreferrer">
-              <MessageCircle size={19} /> Order on WhatsApp
+          <div className="mt-9 flex">
+            <a className="btn-hero-whatsapp" href={whatsappUrl()} target="_blank" rel="noreferrer">
+              <MessageCircle className="h-6 w-6 sm:h-7 sm:w-7" /> Order on WhatsApp
             </a>
-            <a className="btn-secondary justify-center" href="#cocktails">
-              View Cocktail Menu <ChevronRight size={18} />
-            </a>
-          </div>
-          <div className="mt-8 flex flex-wrap gap-3">
-            {badges.map((badge) => (
-              <span key={badge} className="rounded-full border border-slate-200 bg-white/75 px-4 py-2 text-sm text-slate-700 shadow-sm">
-                {badge}
-              </span>
-            ))}
           </div>
         </motion.div>
         <motion.div
@@ -237,9 +222,7 @@ function SectionIntro({ eyebrow, title, copy }) {
 }
 
 function ProductModal({ product, onClose }) {
-  const [paymentMethod, setPaymentMethod] = useState('cod');
   const [quantity, setQuantity] = useState(1);
-  const [codOrder, setCodOrder] = useState(null);
 
   useEffect(() => {
     if (!product) return undefined;
@@ -259,7 +242,7 @@ function ProductModal({ product, onClose }) {
 
   if (!product) return null;
 
-  const orderMessage = `Hello, I want to order ${quantity} x ${product.name}. Payment: ${paymentMethod === 'cod' ? 'Cash on Delivery' : 'WhatsApp confirmation'}. Can you confirm availability and price?`;
+  const orderMessage = `Hello, I want to order ${quantity} x ${product.name}. Can you confirm availability and price?`;
 
   return (
     <AnimatePresence>
@@ -355,50 +338,13 @@ function ProductModal({ product, onClose }) {
                 </div>
               </div>
 
-              <form
-                className="mt-5 grid gap-4 rounded-[1.5rem] border border-slate-200 bg-slate-50 p-4"
-                onSubmit={(event) => {
-                  event.preventDefault();
-                  const form = new FormData(event.currentTarget);
-                  setCodOrder({
-                    name: form.get('customerName'),
-                    phone: form.get('customerPhone'),
-                    area: form.get('deliveryArea'),
-                    quantity,
-                    product: product.name,
-                  });
-                }}
-              >
-                <div>
-                  <p className="text-sm font-black uppercase tracking-[0.18em] text-night">Cash on Delivery</p>
-                  <p className="mt-1 text-sm leading-6 text-slate-600">
-                    Submit your details and Lazy Bartender will confirm price, availability, and delivery timing.
-                  </p>
-                </div>
-                <div className="grid gap-3 sm:grid-cols-2">
-                  <input className="field" name="customerName" placeholder="Full name" required />
-                  <input className="field" name="customerPhone" placeholder="Phone number" required />
-                </div>
-                <input className="field" name="deliveryArea" placeholder="Delivery area / address" required />
-                <textarea className="field min-h-24 resize-y" name="notes" placeholder="Notes, preferred delivery time, or customization requests" />
-                <label className="flex items-center gap-3 text-sm font-semibold text-slate-700">
-                  <input
-                    checked={paymentMethod === 'cod'}
-                    className="h-4 w-4 accent-berry"
-                    onChange={() => setPaymentMethod('cod')}
-                    type="checkbox"
-                  />
-                  Pay with Cash on Delivery
-                </label>
-                <button className="btn-secondary justify-center" type="submit">
-                  <Send size={18} /> Place COD Order
-                </button>
-                {codOrder && (
-                  <div className="rounded-2xl border border-lime/40 bg-lime/15 p-4 text-sm leading-6 text-night">
-                    COD request received for {codOrder.quantity} x {codOrder.product}. We will contact {codOrder.name} at {codOrder.phone} to confirm delivery to {codOrder.area}.
-                  </div>
-                )}
-              </form>
+              <div className="mt-5 rounded-[1.5rem] border border-slate-200 bg-gradient-to-br from-citrus/10 via-white to-berry/10 p-5">
+                <p className="text-sm font-black uppercase tracking-[0.18em] text-night">About this bottle</p>
+                <p className="mt-2 text-sm leading-7 text-slate-700">
+                  {product.name} is prepared fresh for easy serving: chilled, colorful, and ready to pour. Order it when
+                  you want a polished cocktail without mixing, measuring, or cleaning up.
+                </p>
+              </div>
             </div>
           </div>
         </motion.div>
@@ -414,8 +360,8 @@ function FeaturedCocktails() {
     <section id="cocktails" className="section-pad">
       <SectionIntro
         eyebrow="Cocktail Menu"
-        title="Colorful classics, polished for your crowd."
-        copy="Every order can be customized by flavor profile, preferred spirits, garnish style, and quantity."
+        title="Cocktail menu"
+        copy="From zesty and bright to warm and spiced, and everything in between. A bottle for every taste"
       />
       <div className="mx-auto grid max-w-7xl gap-4 px-5 sm:grid-cols-2 lg:grid-cols-4 lg:px-8">
         {cocktails.map((item) => (
@@ -459,64 +405,6 @@ function FeaturedCocktails() {
   );
 }
 
-function Services() {
-  return (
-    <section id="services" className="section-pad bg-gradient-to-br from-citrus/10 via-white to-ice/20">
-      <SectionIntro
-        eyebrow="What We Offer"
-        title="Online cocktail orders, prepared fresh."
-        copy="Lazy Bartender is a cocktail retailer: browse the menu, ask for availability and prices, then place your order through WhatsApp."
-      />
-      <div className="mx-auto grid max-w-7xl gap-4 px-5 md:grid-cols-2 lg:grid-cols-3 lg:px-8">
-        {services.map(([title, text], index) => (
-          <motion.div key={title} {...fadeUp} className="card flex gap-4">
-            <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-citrus/25 to-berry/25 text-gold">
-              {index % 2 === 0 ? <Citrus /> : <Sparkles />}
-            </div>
-            <div>
-              <h3 className="font-bold text-night">{title}</h3>
-              <p className="mt-2 text-sm leading-6 text-slate-600">{text}</p>
-            </div>
-          </motion.div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function WhyChooseUs() {
-  const points = [
-    'Fresh ingredients',
-    'Stylish cocktail presentation',
-    'Custom options for each order',
-    'Fast WhatsApp communication',
-    'Pickup or delivery coordination',
-    'Premium taste and visual presentation',
-  ];
-
-  return (
-    <section className="section-pad bg-gradient-to-br from-white via-berry/5 to-lime/10">
-      <div className="mx-auto grid max-w-7xl gap-10 px-5 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
-        <motion.div {...fadeUp}>
-          <p className="section-eyebrow text-left">Why Choose Us</p>
-          <h2 className="section-title text-left">A polished cocktail experience without the stress.</h2>
-          <p className="mt-5 text-lg leading-8 text-slate-600">
-            We make ordering premium cocktails simple, stylish, and fast, with fresh preparation and clear WhatsApp
-            communication before every order.
-          </p>
-        </motion.div>
-        <div className="grid gap-3 sm:grid-cols-2">
-          {points.map((point) => (
-            <motion.div key={point} {...fadeUp} className="flex items-center gap-3 rounded-3xl border border-slate-200 bg-white/90 p-4 shadow-sm">
-              <Check className="text-lime" /> <span className="font-bold text-night">{point}</span>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function Gallery() {
   // Replace these gradient placeholders with real cocktail product photos when available.
   const gallery = [
@@ -531,8 +419,7 @@ function Gallery() {
     <section className="section-pad">
       <SectionIntro
         eyebrow="Gallery"
-        title="Replaceable visuals for cocktails, setup, and party mood."
-        copy="Drop real product photos into the gallery later; the layout is ready for premium cocktail photography."
+        title="Tastes as good as it looks"
       />
       <div className="mx-auto grid max-w-7xl gap-4 px-5 sm:grid-cols-2 lg:grid-cols-5 lg:px-8">
         {gallery.map(([label, gradient], index) => (
@@ -575,61 +462,61 @@ function About() {
 }
 
 function Contact() {
-  const orderTypes = ['Individual Cocktails', 'Mixed Box', 'Bottle / Batch Order', 'Custom Flavor Request', 'Gift Order'];
-
   return (
     <section id="contact" className="section-pad">
       <SectionIntro
-        eyebrow="Book Now"
+        eyebrow="Order Now"
         title="Place your cocktail order."
         copy="Send your order details, or message us directly on WhatsApp for the latest menu, availability, and prices."
       />
-      <div className="mx-auto grid max-w-7xl gap-6 px-5 lg:grid-cols-[0.8fr_1.2fr] lg:px-8">
-        <motion.div {...fadeUp} className="card">
-          <a className="btn-primary w-full justify-center" href={whatsappUrl()} target="_blank" rel="noreferrer">
-            <MessageCircle size={18} /> Order on WhatsApp
-          </a>
-          <div className="mt-7 space-y-5 text-slate-700">
-            <p className="flex items-center gap-3"><Phone className="text-gold" /> {brand.phone}</p>
-            <p className="flex items-center gap-3"><Sparkles className="text-berry" /> <a href={brand.instagramUrl} target="_blank" rel="noreferrer">Instagram</a></p>
-            <p className="flex items-center gap-3"><MapPin className="text-ice" /> {brand.location}</p>
+      <div className="mx-auto max-w-5xl px-5 lg:px-8">
+        <motion.div {...fadeUp} className="card overflow-hidden p-6 sm:p-8 lg:p-10">
+          <div className="grid gap-8 lg:grid-cols-[1fr_0.85fr] lg:items-center">
+            <div>
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-gold">Fast Ordering</p>
+              <h3 className="mt-3 font-display text-3xl font-extrabold leading-tight text-night sm:text-4xl">
+                Order directly on WhatsApp.
+              </h3>
+              <p className="mt-4 text-base leading-8 text-slate-700 sm:text-lg">
+                Send us your cocktail choice, quantity, and pickup or delivery area. We will confirm the latest
+                menu, availability, and prices.
+              </p>
+            </div>
+            <a className="btn-contact-whatsapp" href={whatsappUrl()} target="_blank" rel="noreferrer">
+              <MessageCircle size={24} /> Order on WhatsApp
+            </a>
           </div>
-          <p className="mt-8 rounded-3xl border border-gold/30 bg-gold/15 p-4 text-sm leading-6 text-slate-700">
+
+          <div className="mt-9 grid gap-4 sm:grid-cols-3">
+            <a
+              className="rounded-3xl border border-slate-200 bg-white/80 p-5 text-slate-700 transition hover:-translate-y-1 hover:border-gold/40 hover:shadow-lg hover:shadow-gold/10"
+              href={`tel:${brand.phone.replace(/\s/g, '')}`}
+            >
+              <Phone className="mb-4 text-gold" />
+              <span className="block text-sm font-black uppercase tracking-[0.16em] text-slate-500">Phone</span>
+              <span className="mt-2 block font-semibold text-night">{brand.phone}</span>
+            </a>
+            <a
+              className="rounded-3xl border border-slate-200 bg-white/80 p-5 text-slate-700 transition hover:-translate-y-1 hover:border-berry/40 hover:shadow-lg hover:shadow-berry/10"
+              href={brand.instagramUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Sparkles className="mb-4 text-berry" />
+              <span className="block text-sm font-black uppercase tracking-[0.16em] text-slate-500">Social</span>
+              <span className="mt-2 block font-semibold text-night">Instagram</span>
+            </a>
+            <div className="rounded-3xl border border-slate-200 bg-white/80 p-5 text-slate-700">
+              <MapPin className="mb-4 text-ice" />
+              <span className="block text-sm font-black uppercase tracking-[0.16em] text-slate-500">Location</span>
+              <span className="mt-2 block font-semibold text-night">{brand.location}</span>
+            </div>
+          </div>
+
+          <p className="mt-8 rounded-3xl border border-gold/30 bg-gold/15 p-5 text-sm leading-6 text-slate-700 sm:text-base">
             Please drink responsibly. Service and alcoholic beverages are only for people of legal drinking age.
           </p>
         </motion.div>
-        <motion.form
-          {...fadeUp}
-          className="card grid gap-4"
-          onSubmit={(event) => {
-            event.preventDefault();
-            const form = new FormData(event.currentTarget);
-            const message = `Hello, I want to order cocktails.
-Name: ${form.get('name')}
-Phone: ${form.get('phone')}
-Order type: ${form.get('orderType')}
-Needed date: ${form.get('date')}
-Quantity: ${form.get('quantity')}
-Message: ${form.get('message')}`;
-            window.open(`https://wa.me/${brand.whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
-          }}
-        >
-          <div className="grid gap-4 md:grid-cols-2">
-            <input className="field" name="name" placeholder="Name" required />
-            <input className="field" name="phone" placeholder="Phone number" required />
-          </div>
-          <div className="grid gap-4 md:grid-cols-3">
-            <select className="field" name="orderType" defaultValue="Individual Cocktails">
-              {orderTypes.map((type) => <option key={type}>{type}</option>)}
-            </select>
-            <input className="field" name="date" type="date" aria-label="Needed date" />
-            <input className="field" name="quantity" type="number" min="1" placeholder="Quantity" />
-          </div>
-          <textarea className="field min-h-36 resize-y" name="message" placeholder="Tell us which cocktails you want, quantity, pickup or delivery area, and any flavor preferences." />
-          <button className="btn-primary justify-center" type="submit">
-            <Send size={18} /> Send Order Request
-          </button>
-        </motion.form>
       </div>
     </section>
   );
@@ -678,8 +565,6 @@ export default function App() {
       <main>
         <Hero />
         <FeaturedCocktails />
-        <Services />
-        <WhyChooseUs />
         <Gallery />
         <About />
         <Contact />
