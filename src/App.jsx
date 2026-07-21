@@ -175,7 +175,7 @@ function Hero() {
             <Sparkles size={16} className="text-gold" /> Premium alcoholic cocktails ordered online in Lebanon
           </div>
           <h1 className="max-w-4xl font-display text-5xl font-extrabold leading-[0.95] text-night sm:text-6xl lg:text-7xl">
-            Lazy Bartender crafted Cocktails.
+            LAZY BARTENDER CRAFTED COCKTAILS.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-700">
             Fresh ready to drink cocktails made for people who love good drinks but hate the work. Choose your bottle, we
@@ -360,8 +360,7 @@ function FeaturedCocktails() {
     <section id="cocktails" className="section-pad">
       <SectionIntro
         eyebrow="Cocktail Menu"
-        title="Cocktail menu"
-        copy="From zesty and bright to warm and spiced, and everything in between. A bottle for every taste"
+        title="From zesty and bright to warm and spiced, and everything in between. A bottle for every taste"
       />
       <div className="mx-auto grid max-w-7xl gap-4 px-5 sm:grid-cols-2 lg:grid-cols-4 lg:px-8">
         {cocktails.map((item) => (
