@@ -20,6 +20,25 @@ const fadeUp = {
   transition: { duration: 0.65, ease: 'easeOut' },
 };
 
+function InstagramIcon({ className = '' }) {
+  return (
+    <svg
+      aria-hidden="true"
+      className={className}
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect width="20" height="20" x="2" y="2" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
 function whatsappUrl(message = brand.whatsappMessage) {
   return `https://wa.me/${brand.whatsappNumber}?text=${encodeURIComponent(message)}`;
 }
@@ -28,23 +47,25 @@ function Logo({ className = '' }) {
   const [failed, setFailed] = useState(false);
 
   return (
-    <div className={`flex items-center gap-3 ${className}`}>
+    <div className={`flex items-center ${className}`}>
       {!failed ? (
         <img
           src={brand.logo}
           onError={() => setFailed(true)}
           alt={`${brand.name} logo`}
-          className="h-11 w-11 rounded-full border border-slate-200 object-contain bg-white p-1"
+          className="block h-12 w-auto rounded-xl shadow-md shadow-slate-300/50 sm:h-14"
         />
       ) : (
-        <div className="grid h-11 w-11 place-items-center rounded-full bg-gradient-to-br from-citrus via-berry to-purple font-display text-lg font-bold text-night">
-          LB
+        <div className="flex items-center gap-3">
+          <div className="grid h-11 w-11 place-items-center rounded-full bg-gradient-to-br from-citrus via-berry to-purple font-display text-lg font-bold text-night">
+            LB
+          </div>
+          <div>
+            <span className="block font-display text-lg font-bold leading-none text-night">{brand.fallbackLogoText}</span>
+            <span className="mt-1 block text-[0.68rem] uppercase tracking-[0.22em] text-slate-500">Lebanon</span>
+          </div>
         </div>
       )}
-      <div>
-        <span className="block font-display text-lg font-bold leading-none text-night">{brand.fallbackLogoText}</span>
-        <span className="mt-1 block text-[0.68rem] uppercase tracking-[0.22em] text-slate-500">Lebanon</span>
-      </div>
     </div>
   );
 }
@@ -168,8 +189,8 @@ function Header() {
 
 function Hero() {
   return (
-    <section id="home" className="hero-shell relative min-h-screen overflow-hidden pt-28">
-      <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 pb-20 pt-10 lg:grid-cols-[1fr_0.94fr] lg:px-8 lg:pt-24">
+    <section id="home" className="hero-shell relative min-h-screen overflow-hidden pt-20 sm:pt-[5.5rem]">
+      <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 pb-20 lg:grid-cols-[1fr_0.94fr] lg:px-8">
         <motion.div {...fadeUp}>
           <div className="mb-7 inline-flex items-center gap-3 rounded-full border border-slate-200 bg-white/80 px-4 py-2 text-sm font-bold text-night shadow-sm">
             <Sparkles size={16} className="text-gold" /> Premium alcoholic cocktails ordered online in Lebanon
@@ -201,9 +222,6 @@ function Hero() {
               alt="Premium colorful cocktails with citrus garnish and nightlife bar lighting"
               className="aspect-[4/5] w-full rounded-[1.6rem] object-cover sm:aspect-[5/4] lg:aspect-[4/5]"
             />
-          </div>
-          <div className="absolute -bottom-7 left-5 right-5 rounded-3xl border border-slate-200 bg-white/90 p-4 shadow-xl shadow-slate-200/70 backdrop-blur-xl">
-            <Logo />
           </div>
         </motion.div>
       </div>
@@ -340,10 +358,7 @@ function ProductModal({ product, onClose }) {
 
               <div className="mt-5 rounded-[1.5rem] border border-slate-200 bg-gradient-to-br from-citrus/10 via-white to-berry/10 p-5">
                 <p className="text-sm font-black uppercase tracking-[0.18em] text-night">About this bottle</p>
-                <p className="mt-2 text-sm leading-7 text-slate-700">
-                  {product.name} is prepared fresh for easy serving: chilled, colorful, and ready to pour. Order it when
-                  you want a polished cocktail without mixing, measuring, or cleaning up.
-                </p>
+                <p className="mt-2 text-sm leading-7 text-slate-700">{product.about}</p>
               </div>
             </div>
           </div>
@@ -502,7 +517,7 @@ function Contact() {
               target="_blank"
               rel="noreferrer"
             >
-              <Sparkles className="mb-4 text-berry" />
+              <InstagramIcon className="mb-4 h-6 w-6 text-berry" />
               <span className="block text-sm font-black uppercase tracking-[0.16em] text-slate-500">Social</span>
               <span className="mt-2 block font-semibold text-night">Instagram</span>
             </a>

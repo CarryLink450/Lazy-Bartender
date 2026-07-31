@@ -30,15 +30,15 @@ body {
 
 @layer components {
   .btn-primary {
-    @apply inline-flex min-h-12 items-center gap-2 rounded-full bg-gradient-to-r from-citrus via-berry to-purple px-6 py-3 text-sm font-extrabold text-night shadow-citrus transition duration-300 hover:-translate-y-0.5 hover:shadow-glow focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 focus:ring-offset-white;
+    @apply inline-flex min-h-12 items-center gap-2 rounded-full bg-[#1A3B2A] px-6 py-3 text-sm font-extrabold text-[#F7E7C5] shadow-[0_12px_28px_rgba(26,59,42,0.24)] transition duration-300 hover:-translate-y-0.5 hover:brightness-110 hover:shadow-[0_16px_34px_rgba(26,59,42,0.32)] focus:outline-none focus:ring-2 focus:ring-[#F7E7C5] focus:ring-offset-2 focus:ring-offset-white;
   }
 
   .btn-hero-whatsapp {
-    @apply inline-flex min-h-16 w-full items-center justify-center gap-3 rounded-full bg-gradient-to-r from-citrus via-berry to-purple px-8 py-5 text-base font-black text-night shadow-citrus transition duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-glow focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 focus:ring-offset-white sm:w-auto sm:min-w-80 sm:px-10 sm:text-lg;
+    @apply inline-flex min-h-16 w-full items-center justify-center gap-3 rounded-full bg-[#1A3B2A] px-8 py-5 text-base font-black text-[#F7E7C5] shadow-[0_16px_36px_rgba(26,59,42,0.28)] transition duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:brightness-110 hover:shadow-[0_20px_44px_rgba(26,59,42,0.36)] focus:outline-none focus:ring-2 focus:ring-[#F7E7C5] focus:ring-offset-2 focus:ring-offset-white sm:w-auto sm:min-w-80 sm:px-10 sm:text-lg;
   }
 
   .btn-contact-whatsapp {
-    @apply inline-flex min-h-16 w-full items-center justify-center gap-3 rounded-full bg-gradient-to-r from-citrus via-berry to-purple px-8 py-5 text-base font-black text-night shadow-citrus transition duration-300 hover:-translate-y-1 hover:scale-[1.01] hover:shadow-glow focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 focus:ring-offset-white sm:min-h-20 sm:px-10 sm:text-lg lg:text-xl;
+    @apply inline-flex min-h-16 w-full items-center justify-center gap-3 rounded-full bg-[#1A3B2A] px-8 py-5 text-base font-black text-[#F7E7C5] shadow-[0_16px_36px_rgba(26,59,42,0.28)] transition duration-300 hover:-translate-y-1 hover:scale-[1.01] hover:brightness-110 hover:shadow-[0_20px_44px_rgba(26,59,42,0.36)] focus:outline-none focus:ring-2 focus:ring-[#F7E7C5] focus:ring-offset-2 focus:ring-offset-white sm:min-h-20 sm:px-10 sm:text-lg lg:text-xl;
   }
 
   .btn-secondary {
