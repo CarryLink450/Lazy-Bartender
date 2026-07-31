@@ -11,7 +11,7 @@ import {
 } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useMemo, useState } from 'react';
-import { brand, cocktails, navLinks } from './data/brand';
+import { availableSizes, brand, cocktails, navLinks } from './data/brand';
 
 const fadeUp = {
   initial: { opacity: 0, y: 26 },
@@ -240,8 +240,6 @@ function SectionIntro({ eyebrow, title, copy, titleClassName = 'section-title' }
 }
 
 function ProductModal({ product, onClose }) {
-  const [quantity, setQuantity] = useState(1);
-
   useEffect(() => {
     if (!product) return undefined;
 
@@ -260,7 +258,7 @@ function ProductModal({ product, onClose }) {
 
   if (!product) return null;
 
-  const orderMessage = `Hello, I want to order ${quantity} x ${product.name}. Can you confirm availability and price?`;
+  const orderMessage = `Hello, I want to order ${product.name}. Can you confirm the available size, availability, and price?`;
 
   return (
     <AnimatePresence>
@@ -306,8 +304,7 @@ function ProductModal({ product, onClose }) {
                     <GlassWater className="h-12 w-12 text-night/75" />
                   </div>
                 </div>
-                <p className="text-sm font-black uppercase tracking-[0.22em] text-night/65">{product.flavor}</p>
-                <h3 id="product-modal-title" className="mt-3 font-display text-5xl font-extrabold leading-tight text-night">
+                <h3 id="product-modal-title" className="font-display text-5xl font-extrabold leading-tight text-night">
                   {product.name}
                 </h3>
               </div>
@@ -316,16 +313,24 @@ function ProductModal({ product, onClose }) {
             <div className="p-6 sm:p-8">
               <p className="text-lg leading-8 text-slate-700">{product.desc}</p>
 
-              <div className="mt-6 grid gap-4 sm:grid-cols-2">
-                <div className="rounded-3xl border border-slate-200 bg-slate-50 p-4">
-                  <p className="text-xs font-black uppercase tracking-[0.18em] text-slate-500">Size</p>
-                  <p className="mt-2 font-bold text-night">{product.size}</p>
+              <section aria-labelledby="available-sizes-title" className="mt-6">
+                <h4 id="available-sizes-title" className="text-xs font-black uppercase tracking-[0.18em] text-slate-500">
+                  Available Sizes
+                </h4>
+                <div className="mt-3 grid grid-cols-2 gap-3">
+                  {availableSizes.map((size) => (
+                    <div
+                      key={size}
+                      className="flex min-h-20 items-center rounded-2xl border border-[#1A3B2A]/20 bg-[#F7E7C5]/45 px-5 py-4"
+                    >
+                      <span>
+                        <span className="block text-xs font-bold uppercase tracking-[0.14em] text-slate-500">Bottle</span>
+                        <span className="mt-1 block text-lg font-black text-night">{size}</span>
+                      </span>
+                    </div>
+                  ))}
                 </div>
-                <div className="rounded-3xl border border-slate-200 bg-slate-50 p-4">
-                  <p className="text-xs font-black uppercase tracking-[0.18em] text-slate-500">Garnish</p>
-                  <p className="mt-2 font-bold text-night">{product.garnish}</p>
-                </div>
-              </div>
+              </section>
 
               <div className="mt-6">
                 <p className="text-xs font-black uppercase tracking-[0.18em] text-gold">Ingredients</p>
@@ -339,21 +344,10 @@ function ProductModal({ product, onClose }) {
               </div>
 
               <div className="mt-7 rounded-[1.5rem] border border-slate-200 bg-white p-4 shadow-sm">
-                <div className="grid gap-3 sm:grid-cols-[1fr_auto] sm:items-end">
-                  <label className="grid gap-2 text-sm font-bold text-night">
-                    Quantity
-                    <input
-                      className="field"
-                      min="1"
-                      type="number"
-                      value={quantity}
-                      onChange={(event) => setQuantity(Math.max(1, Number(event.target.value) || 1))}
-                    />
-                  </label>
-                  <a className="btn-primary justify-center" href={whatsappUrl(orderMessage)} target="_blank" rel="noreferrer">
-                    <MessageCircle size={18} /> Order on WhatsApp
-                  </a>
-                </div>
+                <p className="text-sm font-black uppercase tracking-[0.18em] text-night">Order Now</p>
+                <a className="btn-primary mt-3 w-full justify-center" href={whatsappUrl(orderMessage)} target="_blank" rel="noreferrer">
+                  <MessageCircle size={18} /> Order on WhatsApp
+                </a>
               </div>
 
               <div className="mt-5 rounded-[1.5rem] border border-slate-200 bg-gradient-to-br from-citrus/10 via-white to-berry/10 p-5">
@@ -383,7 +377,7 @@ function FeaturedCocktails() {
           <motion.article
             key={item.name}
             {...fadeUp}
-            className="card group cursor-pointer"
+            className="card group flex h-full cursor-pointer flex-col"
             onClick={() => setSelectedProduct(item)}
             onKeyDown={(event) => {
               if (event.key === 'Enter' || event.key === ' ') {
@@ -405,9 +399,8 @@ function FeaturedCocktails() {
             </div>
             <h3 className="mt-5 text-xl font-extrabold text-night">{item.name}</h3>
             <p className="mt-3 text-sm leading-6 text-slate-600">{item.desc}</p>
-            <p className="mt-4 text-xs font-bold uppercase tracking-[0.18em] text-gold">{item.flavor}</p>
             <button
-              className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-purple"
+              className="mt-auto inline-flex items-center gap-2 pt-6 text-sm font-bold text-purple"
               type="button"
             >
               View details <ChevronRight size={16} />
