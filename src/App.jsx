@@ -97,7 +97,7 @@ function AgeGate() {
         )}
         <div className="mt-7 grid gap-3 sm:grid-cols-2">
           <button
-            className="rounded-full bg-gradient-to-r from-citrus via-berry to-purple px-5 py-3 font-bold text-night shadow-citrus transition hover:scale-[1.02]"
+            className="rounded-full bg-[#1A3B2A] px-5 py-3 font-bold text-[#F7E7C5] shadow-[0_12px_28px_rgba(26,59,42,0.24)] transition hover:scale-[1.02] hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-[#1A3B2A] focus:ring-offset-2"
             onClick={() => {
               localStorage.setItem('lazy-bartender-age-ok', 'true');
               setStatus('accepted');
@@ -106,7 +106,7 @@ function AgeGate() {
             Yes, Enter
           </button>
           <button
-            className="rounded-full border border-slate-200 px-5 py-3 font-bold text-night transition hover:bg-slate-100"
+            className="rounded-full border border-[#1A3B2A]/30 bg-[#F7E7C5] px-5 py-3 font-bold text-[#1A3B2A] transition hover:border-[#1A3B2A] hover:brightness-95 focus:outline-none focus:ring-2 focus:ring-[#1A3B2A] focus:ring-offset-2"
             onClick={() => setStatus('denied')}
           >
             No, Exit
