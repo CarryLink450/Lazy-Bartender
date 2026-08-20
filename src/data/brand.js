@@ -25,7 +25,7 @@ export const availableSizes = ['500 ml', '750 ml'];
 export const cocktails = [
   {
     name: 'Margarita',
-    desc: 'Sunshine in a bottle with fresh citrus and the smooth kick of real agave tequila.',
+    desc: 'Sunshine in a bottle.',
     about:
       'Sunshine in a bottle. Our Margarita brings the bright zing of fresh citrus and the smooth kick of real agave tequila. No squeezing, no measuring. Just crack, pour, and fiesta.',
     flavor: 'Citrus / Agave / Bright',
@@ -37,9 +37,9 @@ export const cocktails = [
   },
   {
     name: "Bee's Knees",
-    desc: 'Real honey, gin, and fresh lemon in a bright, botanical bottle.',
+    desc: 'Real honey from real bees.',
     about:
-      "Real honey from real bees. Mixed with gin and fresh lemon. That's it. Bright, botanical, and just sweet enough to keep you reaching for another sip. Just crack, pour, and enjoy.",
+      "Real honey from real bees. Mixed with gin and fresh lemon. That's it. Bright, botanical, and just sweet enough to keep you reaching for another sip. Just crack, pour and enjoy.",
     flavor: 'Honey / Citrus / Botanical',
     ingredients: ['Gin', 'Honey syrup', 'Lemon juice'],
     prices: { '500 ml': '13$', '750 ml': '16$' },
@@ -49,9 +49,9 @@ export const cocktails = [
   },
   {
     name: 'Basil Smash',
-    desc: 'Fresh, zesty, herbal, and full of life without trying too hard.',
+    desc: 'Fresh, zesty and full of life.',
     about:
-      "Fresh, zesty, and full of life. This one's crisp without being sharp, herbal without being bitter, and refreshing without trying too hard. Just open, pour, and unwind.",
+      "Fresh, zesty and full of life. This one's crisp without being sharp, herbal without being bitter, and refreshing without trying too hard. Just open, pour and unwind.",
     flavor: 'Herbal / Zesty / Fresh',
     ingredients: ['Gin', 'Sugar syrup', 'Lemon juice', 'Basil leaves'],
     prices: { '500 ml': '13$', '750 ml': '16$' },
@@ -61,9 +61,9 @@ export const cocktails = [
   },
   {
     name: 'Negroni',
-    desc: 'Bitter, botanical, and built for slow sipping.',
+    desc: "Some cocktails are sweet. This one's not.",
     about:
-      "Some cocktails are sweet. This one's not. Bitter, botanical, and built for slow sipping. The Negroni rewards patience with layers that unfold with every sip. Pour and take your time.",
+      "Some cocktails are sweet. This one's not. Bitter, botanical and built for slow sipping. The Negroni rewards patience with layers that unfold with every sip. Pour and take your time.",
     flavor: 'Bitter / Botanical / Bold',
     ingredients: ['Gin', 'Campari', 'Sweet vermouth'],
     prices: { '500 ml': '14$', '750 ml': '17$' },
@@ -73,7 +73,7 @@ export const cocktails = [
   },
   {
     name: 'Whiskey Sour',
-    desc: 'Tart and warm with a smooth finish and a classic twist.',
+    desc: 'Tart and warm with a smooth finish.',
     about:
       'Tart and warm with a smooth finish. Nothing complicated, just a classic done with a twist.',
     flavor: 'Tart / Warm / Smooth',
@@ -85,9 +85,9 @@ export const cocktails = [
   },
   {
     name: 'Carajillo',
-    desc: 'Brewed coffee, reposado tequila, and a touch of Spanish sweetness.',
+    desc: 'Brewed coffee meets reposado tequila and a touch of Spanish sweetness.',
     about:
-      'Brewed coffee meets reposado tequila and a touch of Spanish sweetness. Rich, smooth, and gone before you know it.',
+      'Brewed coffee meets reposado tequila and a touch of Spanish sweetness. Rich, smooth and gone before you know it.',
     flavor: 'Coffee / Rich / Smooth',
     ingredients: ['Tequila reposado', 'Licor 43', 'Coffee concentrate'],
     prices: { '500 ml': 'Ask for price', '750 ml': 'Ask for price' },
@@ -97,9 +97,9 @@ export const cocktails = [
   },
   {
     name: 'Cosmopolitan',
-    desc: 'Bright, refined, and finished with a citrus glow.',
+    desc: 'The Cosmo got its reputation for a reason.',
     about:
-      'The Cosmo got its reputation for a reason. Ours lives up to it. Bright, refined, and finished with a citrus glow.',
+      'The Cosmo got its reputation for a reason. Ours lives up to it. Bright, refined and finished with a citrus glow.',
     flavor: 'Bright / Refined / Citrus',
     ingredients: ['Vodka', 'Cointreau', 'Cranberry juice', 'Lemon juice'],
     prices: { '500 ml': '12$', '750 ml': '15$' },
@@ -109,8 +109,8 @@ export const cocktails = [
   },
   {
     name: 'Bahamas',
-    desc: 'Warm, nutty, and banana-kissed.',
-    about: 'Warm, nutty, and banana-kissed. A signature that earned its spot.',
+    desc: 'Warm, nutty and banana kissed.',
+    about: 'Warm, nutty and banana kissed. A signature that earned its spot.',
     flavor: 'Warm / Nutty / Banana',
     ingredients: ['Rye whiskey', 'Amaretto Disaronno', 'Banana liqueur', 'Lemon juice', 'Demerara syrup'],
     prices: { '500 ml': '15$', '750 ml': '20$' },

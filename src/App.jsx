@@ -330,7 +330,7 @@ function ProductModal({ product, onClose }) {
             </div>
 
             <div className="p-6 sm:p-8">
-              <p className="text-lg leading-8 text-slate-700">{product.desc}</p>
+              <p className="text-lg leading-8 text-slate-700">{product.about}</p>
 
               <section aria-labelledby="available-sizes-title" className="mt-6">
                 <h4 id="available-sizes-title" className="text-xs font-black uppercase tracking-[0.18em] text-slate-500">
