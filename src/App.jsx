@@ -13,6 +13,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useMemo, useState } from 'react';
 import { availableSizes, brand, cocktails, navLinks } from './data/brand';
 
+const SHOW_GALLERY = false;
+
 const fadeUp = {
   initial: { opacity: 0, y: 26 },
   whileInView: { opacity: 1, y: 0 },
@@ -218,9 +220,9 @@ function Hero() {
           <div className="absolute -right-4 bottom-16 h-40 w-40 rounded-full bg-berry/25 blur-3xl" />
           <div className="glass-panel overflow-hidden p-3">
             <img
-              src="/cocktail-hero.png"
-              alt="Premium colorful cocktails with citrus garnish and nightlife bar lighting"
-              className="aspect-[4/5] w-full rounded-[1.6rem] object-cover sm:aspect-[5/4] lg:aspect-[4/5]"
+              src="/main-picture-edited.jpg"
+              alt="Lazy Bartender cocktail bottles photographed among green leaves"
+              className="aspect-[4/5] w-full rounded-[1.6rem] object-cover object-[center_65%] sm:aspect-[5/4] lg:aspect-[4/5]"
             />
           </div>
         </motion.div>
@@ -283,31 +285,48 @@ function ProductModal({ product, onClose }) {
         >
           <div className="grid lg:grid-cols-[0.9fr_1.1fr]">
             <div
-              className={`relative min-h-72 bg-gradient-to-br ${product.accent} bg-cover bg-center p-6`}
-              style={{ backgroundImage: `linear-gradient(135deg, rgba(255,255,255,.3), rgba(255,255,255,.58)), url(${product.image})` }}
+              className={`relative min-h-[30rem] overflow-hidden ${
+                product.productPhoto ? 'bg-white' : `bg-gradient-to-br ${product.accent} bg-cover bg-center p-6`
+              }`}
+              style={product.productPhoto
+                ? undefined
+                : { backgroundImage: `linear-gradient(135deg, rgba(255,255,255,.3), rgba(255,255,255,.58)), url(${product.image})` }}
             >
               <button
                 type="button"
                 aria-label="Close product details"
-                className="absolute right-5 top-5 grid h-11 w-11 place-items-center rounded-full bg-white/85 text-night shadow-sm"
+                className="absolute right-5 top-5 z-10 grid h-11 w-11 place-items-center rounded-full bg-white/90 text-night shadow-md"
                 onClick={onClose}
               >
                 <X size={20} />
               </button>
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_28%_22%,rgba(255,255,255,0.52),transparent_24%),radial-gradient(circle_at_68%_74%,rgba(255,255,255,0.28),transparent_20%)]" />
-              <div className="relative flex h-full min-h-72 flex-col justify-end">
-                <div
-                  className="mb-5 grid h-24 w-24 place-items-center overflow-hidden rounded-3xl border border-white/60 bg-cover bg-center shadow-lg"
-                  style={{ backgroundImage: `url(${product.image})` }}
-                >
-                  <div className="grid h-full w-full place-items-center bg-white/45 backdrop-blur-[1px]">
-                    <GlassWater className="h-12 w-12 text-night/75" />
+              {product.productPhoto ? (
+                <>
+                  <img
+                    src={product.image}
+                    alt={`${product.name} ready-to-drink cocktail bottle`}
+                    className="absolute inset-0 h-full w-full object-contain p-3 sm:p-5"
+                  />
+                  <h3 id="product-modal-title" className="sr-only">{product.name}</h3>
+                </>
+              ) : (
+                <>
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_28%_22%,rgba(255,255,255,0.52),transparent_24%),radial-gradient(circle_at_68%_74%,rgba(255,255,255,0.28),transparent_20%)]" />
+                  <div className="relative flex h-full min-h-[30rem] flex-col justify-end">
+                    <div
+                      className="mb-5 grid h-24 w-24 place-items-center overflow-hidden rounded-3xl border border-white/60 bg-cover bg-center shadow-lg"
+                      style={{ backgroundImage: `url(${product.image})` }}
+                    >
+                      <div className="grid h-full w-full place-items-center bg-white/45 backdrop-blur-[1px]">
+                        <GlassWater className="h-12 w-12 text-night/75" />
+                      </div>
+                    </div>
+                    <h3 id="product-modal-title" className="font-display text-5xl font-extrabold leading-tight text-night">
+                      {product.name}
+                    </h3>
                   </div>
-                </div>
-                <h3 id="product-modal-title" className="font-display text-5xl font-extrabold leading-tight text-night">
-                  {product.name}
-                </h3>
-              </div>
+                </>
+              )}
             </div>
 
             <div className="p-6 sm:p-8">
@@ -317,18 +336,22 @@ function ProductModal({ product, onClose }) {
                 <h4 id="available-sizes-title" className="text-xs font-black uppercase tracking-[0.18em] text-slate-500">
                   Available Sizes
                 </h4>
-                <div className="mt-3 grid grid-cols-2 gap-3">
-                  {availableSizes.map((size) => (
-                    <div
-                      key={size}
-                      className="flex min-h-20 items-center rounded-2xl border border-[#1A3B2A]/20 bg-[#F7E7C5]/45 px-5 py-4"
-                    >
-                      <span>
-                        <span className="block text-xs font-bold uppercase tracking-[0.14em] text-slate-500">Bottle</span>
-                        <span className="mt-1 block text-lg font-black text-night">{size}</span>
-                      </span>
-                    </div>
-                  ))}
+                <div className="mt-3 overflow-hidden rounded-2xl border border-[#1A3B2A]/20 bg-[#F7E7C5]/35">
+                  <div className="grid grid-cols-[minmax(0,1fr)_minmax(7rem,auto)] gap-4 bg-[#1A3B2A] px-5 py-3 text-xs font-black uppercase tracking-[0.14em] text-[#F7E7C5]">
+                    <span>Size</span>
+                    <span className="text-right">Price</span>
+                  </div>
+                  <div className="divide-y divide-[#1A3B2A]/15">
+                    {availableSizes.map((size) => (
+                      <div
+                        key={size}
+                        className="grid min-h-16 grid-cols-[minmax(0,1fr)_minmax(7rem,auto)] items-center gap-4 px-5 py-4"
+                      >
+                        <span className="text-lg font-black text-night">{size}</span>
+                        <span className="text-right text-lg font-black text-[#1A3B2A]">{product.prices[size]}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </section>
 
@@ -350,10 +373,6 @@ function ProductModal({ product, onClose }) {
                 </a>
               </div>
 
-              <div className="mt-5 rounded-[1.5rem] border border-slate-200 bg-gradient-to-br from-citrus/10 via-white to-berry/10 p-5">
-                <p className="text-sm font-black uppercase tracking-[0.18em] text-night">About this bottle</p>
-                <p className="mt-2 text-sm leading-7 text-slate-700">{product.about}</p>
-              </div>
             </div>
           </div>
         </motion.div>
@@ -389,13 +408,23 @@ function FeaturedCocktails() {
             tabIndex={0}
           >
             <div className={`mb-5 h-2 w-20 rounded-full bg-gradient-to-r ${item.accent}`} />
-            <div
-              className="grid h-20 w-20 place-items-center overflow-hidden rounded-3xl border border-slate-200 bg-cover bg-center shadow-md shadow-slate-200/70 transition group-hover:scale-105"
-              style={{ backgroundImage: `url(${item.image})` }}
-            >
-              <div className="grid h-full w-full place-items-center bg-white/50 backdrop-blur-[1px]">
-                <GlassWater className="text-purple transition group-hover:text-gold" />
-              </div>
+            <div className="flex h-32 w-full items-center justify-center overflow-hidden">
+              {item.productPhoto ? (
+                <img
+                  src={item.image}
+                  alt={`${item.name} ready-to-drink cocktail bottle`}
+                  className="h-full w-full object-contain transition duration-300 group-hover:scale-105"
+                />
+              ) : (
+                <div
+                  className="grid h-20 w-20 place-items-center overflow-hidden rounded-3xl border border-slate-200 bg-cover bg-center shadow-md shadow-slate-200/70 transition group-hover:scale-105"
+                  style={{ backgroundImage: `url(${item.image})` }}
+                >
+                  <div className="grid h-full w-full place-items-center bg-white/50 backdrop-blur-[1px]">
+                    <GlassWater className="text-purple transition group-hover:text-gold" />
+                  </div>
+                </div>
+              )}
             </div>
             <h3 className="mt-5 text-xl font-extrabold text-night">{item.name}</h3>
             <p className="mt-3 text-sm leading-6 text-slate-600">{item.desc}</p>
@@ -523,6 +552,7 @@ function Contact() {
 
           <p className="mt-8 rounded-3xl border border-gold/30 bg-gold/15 p-5 text-sm leading-6 text-slate-700 sm:text-base">
             Please drink responsibly. Service and alcoholic beverages are only for people of legal drinking age.
+            <strong className="mt-2 block font-bold text-night">* Delivery charges will be applied</strong>
           </p>
         </motion.div>
       </div>
@@ -573,7 +603,7 @@ export default function App() {
       <main>
         <Hero />
         <FeaturedCocktails />
-        <Gallery />
+        {SHOW_GALLERY && <Gallery />}
         <About />
         <Contact />
       </main>
