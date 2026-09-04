@@ -6,8 +6,7 @@ export const brand = {
   fallbackLogoText: 'Lazy Bartender',
   phone: '+961 79 456 050',
   whatsappNumber: '96179456050',
-  instagramUrl:
-    'https://www.instagram.com/lazybartender.lb?igsh=MWxvZWd3Nm0xb2xkMw%3D%3D&utm_source=qr',
+  instagramUrl: 'https://www.instagram.com/lazybartendercocktails/',
   location: 'Lebanon',
   whatsappMessage:
     'Hello, I want to order cocktails. Can you send me the available menu and prices?',
