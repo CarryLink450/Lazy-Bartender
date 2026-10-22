@@ -41,8 +41,8 @@ function InstagramIcon({ className = '' }) {
   );
 }
 
-function whatsappUrl(message = brand.whatsappMessage) {
-  return `https://wa.me/${brand.whatsappNumber}?text=${encodeURIComponent(message)}`;
+function whatsappUrl() {
+  return `https://wa.me/${brand.whatsappNumber}`;
 }
 
 function Logo({ className = '' }) {
@@ -260,8 +260,6 @@ function ProductModal({ product, onClose }) {
 
   if (!product) return null;
 
-  const orderMessage = `Hello, I want to order ${product.name}. Can you confirm the available size, availability, and price?`;
-
   return (
     <AnimatePresence>
       <motion.div
@@ -368,7 +366,7 @@ function ProductModal({ product, onClose }) {
 
               <div className="mt-7 rounded-[1.5rem] border border-slate-200 bg-white p-4 shadow-sm">
                 <p className="text-sm font-black uppercase tracking-[0.18em] text-night">Order Now</p>
-                <a className="btn-primary mt-3 w-full justify-center" href={whatsappUrl(orderMessage)} target="_blank" rel="noreferrer">
+                <a className="btn-primary mt-3 w-full justify-center" href={whatsappUrl()} target="_blank" rel="noreferrer">
                   <MessageCircle size={18} /> Order on WhatsApp
                 </a>
               </div>

@@ -8,8 +8,6 @@ export const brand = {
   whatsappNumber: '96179456050',
   instagramUrl: 'https://www.instagram.com/lazybartendercocktails/',
   location: 'Lebanon',
-  whatsappMessage:
-    'Hello, I want to order cocktails. Can you send me the available menu and prices?',
 };
 
 export const navLinks = [
